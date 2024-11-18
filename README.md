@@ -1,6 +1,8 @@
+```
 <('.'<) <('.')> (>'.')> <('.')> <('.'<) <('.')> (>'.')> <('.')> <('.'<) <('.')> (>'.')>
 <('.')> <('.'<) THIS IS THE TODO AND OVERVIEW OF WHAT I AM DOING HERE <('.')> (>'.')>
 <('.'<) <('.')> (>'.')> <('.')> <('.'<) <('.')> (>'.')> <('.'<) <('.')> (>'.')> <('.')>
+```
 
 # Crypto Portfolio Preview App
 
@@ -51,51 +53,6 @@ Build a React Native app that displays crypto portfolio information and transact
   - Dark/Light mode
   - Currency conversion
   - Price alerts (mock)
-
-## Implementation Steps
-
-2. **Initial Component Structure**
-
-```jsx
-src / components / AssetCard.js;
-TransactionItem.js;
-PriceIndicator.js;
-CustomButton.js;
-screens / PortfolioScreen.js;
-TransactionsScreen.js;
-SettingsScreen.js;
-context / ThemeContext.js;
-utils / mockData.js;
-```
-
-3. **Mock Data Structure**
-
-```javascript
-// mockData.js
-export const portfolioData = [
-  {
-    id: "1",
-    symbol: "ETH",
-    name: "Ethereum",
-    balance: "1.5",
-    value: 3200.5,
-    change24h: 2.5,
-  },
-  // ... more assets
-];
-
-export const transactionHistory = [
-  {
-    id: "1",
-    type: "receive",
-    amount: "0.5",
-    symbol: "ETH",
-    timestamp: "2024-03-18T10:30:00Z",
-    status: "completed",
-  },
-  // ... more transactions
-];
-```
 
 ## Learning Value Alignment
 
