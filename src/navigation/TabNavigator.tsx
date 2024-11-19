@@ -1,9 +1,9 @@
 // src/navigation/TabNavigator.tsx
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import PortfolioScreen from "../screens/PortfolioScreen";
-import TransactionsScreen from "../screens/TransactionsScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import React from "react";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import PortfolioScreen from '../screens/PortfolioScreen';
+import TransactionsScreen from '../screens/TransactionsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import React from 'react';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,21 +14,21 @@ function TabNavigator() {
         name="Portfolio"
         component={PortfolioScreen}
         options={{
-          tabBarLabel: "Portfolio",
+          tabBarLabel: 'Portfolio',
         }}
       />
       <Tab.Screen
         name="Transactions"
         component={TransactionsScreen}
         options={{
-          tabBarLabel: "Transactions",
+          tabBarLabel: 'Transactions',
         }}
       />
       <Tab.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
-          tabBarLabel: "Settings",
+          tabBarLabel: 'Settings',
         }}
       />
     </Tab.Navigator>

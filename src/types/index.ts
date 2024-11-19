@@ -12,11 +12,11 @@ export interface Asset {
 
 export interface Transaction {
   id: string;
-  type: "receive" | "send" | "swap";
+  type: 'receive' | 'send' | 'swap';
   amount: string;
   symbol: string;
   timestamp: string;
-  status: "completed" | "pending" | "failed";
+  status: 'completed' | 'pending' | 'failed';
   from?: string;
   to?: string;
   toAmount?: string;

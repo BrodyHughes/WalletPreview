@@ -1,26 +1,22 @@
-import Animated from "react-native-reanimated";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { screenStyles } from "../styles/screens";
-import Wallet from "../components/Wallet";
+import Animated from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { screenStyles } from '../styles/screens';
+import Wallet from '../components/Wallet';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { fetchCryptoData } from '../services/apis';
-import { Text } from "../components/Text";
+import { CryptoPrices, fetchCryptoData } from '../services/apis';
 
 function PortfolioScreen() {
-  const [portfolio, setPortfolio] = useState([]);
+  const [prices, setPrices] = useState<CryptoPrices | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchCryptoData(['ethereum', 'bitcoin', 'usd-coin']);
-        console.log('data', data);
-        setPortfolio(data);
+        const data = await fetchCryptoData();
+        // console.log('data', data);
+        setPrices(data);
       } catch (err) {
-        setError('Failed to load portfolio');
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -30,23 +26,14 @@ function PortfolioScreen() {
     fetchPortfolio();
   }, []);
 
-  if (isLoading) {
-    return <ActivityIndicator size="large" color="#3498db" />;
-  }
-
-  if (error) {
-    return <Text>Error: {error}</Text>;
-  }
-
+  // Pass prices and loading state to Wallet
   return (
-    <SafeAreaView
-      style={screenStyles.container}
-      edges={["top", "left", "right"]}
-    >
+    <SafeAreaView style={screenStyles.container} edges={['top', 'left', 'right']}>
       <Animated.View style={[screenStyles.container]}>
-        <Wallet />
+        <Wallet priceData={prices} isLoading={isLoading} />
       </Animated.View>
-    </SafeAreaView>  );
+    </SafeAreaView>
+  );
 }
 
 export default PortfolioScreen;

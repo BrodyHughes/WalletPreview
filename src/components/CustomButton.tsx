@@ -1,19 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   TouchableOpacity,
   Text,
-  StyleSheet,
   TouchableOpacityProps,
   ActivityIndicator,
   ViewStyle,
   TextStyle,
-} from "react-native";
-import { buttonStyles } from "../styles/components";
+} from 'react-native';
+import { buttonStyles } from '../styles/components';
 
 interface CustomButtonProps extends TouchableOpacityProps {
   title: string;
-  variant?: "primary" | "secondary" | "outline";
-  size?: "small" | "medium" | "large";
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'small' | 'medium' | 'large';
   isLoading?: boolean;
   disabled?: boolean;
   buttonStyle?: ViewStyle;
@@ -22,8 +21,8 @@ interface CustomButtonProps extends TouchableOpacityProps {
 
 export function CustomButton({
   title,
-  variant = "primary",
-  size = "medium",
+  variant = 'primary',
+  size = 'medium',
   isLoading = false,
   disabled = false,
   buttonStyle,
@@ -43,7 +42,7 @@ export function CustomButton({
       {...props}
     >
       {isLoading ? (
-        <ActivityIndicator color={variant === "outline" ? "#3498db" : "#fff"} />
+        <ActivityIndicator color={variant === 'outline' ? '#3498db' : '#fff'} />
       ) : (
         <Text
           style={[
