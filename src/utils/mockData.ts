@@ -1,5 +1,19 @@
-// src/utils/mockData.js
-export const portfolioData = [
+// src/utils/mockData.ts
+export interface Asset {
+  id: string;
+  symbol: string;
+  name: string;
+  balance: string;
+  value: number;
+  change24h: number;
+  colors: {
+    primary: string;
+    secondary: string;
+    text?: string;
+  };
+}
+
+export const portfolioData: Asset[] = [
   {
     id: "1",
     symbol: "ETH",
@@ -7,7 +21,11 @@ export const portfolioData = [
     balance: "1.5",
     value: 3200.5,
     change24h: 2.5,
-    icon: "⟠", // placeholder for actual icon
+    colors: {
+      primary: "#627EEA", // Ethereum blue
+      secondary: "#ECF0FF", // Light ethereum blue
+      text: "#FFFFFF",
+    },
   },
   {
     id: "2",
@@ -16,7 +34,11 @@ export const portfolioData = [
     balance: "0.05",
     value: 2150.75,
     change24h: -1.2,
-    icon: "₿", // placeholder for actual icon
+    colors: {
+      primary: "#F7931A", // Bitcoin orange
+      secondary: "#FFF5E6", // Light bitcoin orange
+      text: "#FFFFFF",
+    },
   },
   {
     id: "3",
@@ -25,11 +47,28 @@ export const portfolioData = [
     balance: "500",
     value: 500.0,
     change24h: 0.01,
-    icon: "$", // placeholder for actual icon
+    colors: {
+      primary: "#2775CA", // USDC blue
+      secondary: "#EEF4FB", // Light USDC blue
+      text: "#FFFFFF",
+    },
   },
 ];
 
-export const transactionHistory = [
+export interface Transaction {
+  id: string;
+  type: "receive" | "send" | "swap";
+  amount: string;
+  symbol: string;
+  timestamp: string;
+  status: "completed" | "pending" | "failed";
+  from?: string;
+  to?: string;
+  toAmount?: string;
+  toSymbol?: string;
+}
+
+export const transactionHistory: Transaction[] = [
   {
     id: "1",
     type: "receive",
@@ -46,23 +85,42 @@ export const transactionHistory = [
     amount: "0.1",
     symbol: "BTC",
     timestamp: "2024-03-17T15:45:00Z",
-    status: "completed",
+    status: "failed",
     from: "0xYOUR...WALLET",
     to: "0x8765...4321",
   },
   {
     id: "3",
     type: "swap",
-    amount: "100",
+    amount: "1000",
     symbol: "USDC",
-    toAmount: "0.05",
+    toAmount: "0.5",
     toSymbol: "ETH",
     timestamp: "2024-03-16T09:15:00Z",
+    status: "pending",
+  },
+  {
+    id: "4",
+    type: "receive",
+    amount: "100",
+    symbol: "USDC",
+    timestamp: "2024-03-15T14:20:00Z",
     status: "completed",
+    from: "0xABCD...EFGH",
+    to: "0xYOUR...WALLET",
+  },
+  {
+    id: "5",
+    type: "send",
+    amount: "0.25",
+    symbol: "ETH",
+    timestamp: "2024-03-14T11:10:00Z",
+    status: "completed",
+    from: "0xYOUR...WALLET",
+    to: "0x9876...DCBA",
   },
 ];
 
-// Theme constants for consistent styling
 export const themeColors = {
   light: {
     background: "#FFFFFF",
@@ -73,6 +131,9 @@ export const themeColors = {
     border: "#bdc3c7",
     positive: "#2ecc71",
     negative: "#e74c3c",
+    muted: "#95a5a6",
+    cardBackground: "#FFFFFF",
+    shadow: "rgba(0, 0, 0, 0.1)",
   },
   dark: {
     background: "#121212",
@@ -83,5 +144,8 @@ export const themeColors = {
     border: "#333333",
     positive: "#2ecc71",
     negative: "#e74c3c",
+    muted: "#7f8c8d",
+    cardBackground: "#242424",
+    shadow: "rgba(0, 0, 0, 0.2)",
   },
 };

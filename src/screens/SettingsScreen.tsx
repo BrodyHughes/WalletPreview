@@ -1,14 +1,20 @@
 import React from "react";
 import Animated from "react-native-reanimated";
-import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "../components/Text";
 import { screenStyles } from "../styles/screens";
 
 function SettingsScreen() {
   return (
-    <Animated.View style={screenStyles.container}>
-              <Text>⚙️</Text>
-      <Text>Settings Screen!</Text>
-    </Animated.View>
+    <SafeAreaView
+      style={screenStyles.container}
+      edges={["top", "left", "right"]}
+    >
+      <Animated.View style={[screenStyles.content]}>
+        <Text>⚙️</Text>
+        <Text>Settings Screen!</Text>
+      </Animated.View>
+    </SafeAreaView>
   );
 }
 

@@ -1,14 +1,20 @@
+// src/screens/TransactionsScreen.tsx
 import React from "react";
 import Animated from "react-native-reanimated";
-import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { screenStyles } from "../styles/screens";
+import { TransactionList } from "../components/TransactionItem";
 
 function TransactionsScreen() {
   return (
-    <Animated.View style={screenStyles.container}>
-      <Text>📒</Text>
-      <Text>Transactions Screen!</Text>
-    </Animated.View>
+    <SafeAreaView
+      style={screenStyles.container}
+      edges={["top", "left", "right"]}
+    >
+      <Animated.View style={screenStyles.content}>
+        <TransactionList />
+      </Animated.View>
+    </SafeAreaView>
   );
 }
 
