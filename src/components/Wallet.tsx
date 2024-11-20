@@ -1,61 +1,48 @@
-import React from 'react';
-import { View, ScrollView, ActivityIndicator } from 'react-native';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView } from 'react-native';
 import { screenStyles } from '../styles/screens';
 import AssetCard from './AssetCard';
 import { Text } from './Text';
-import { CryptoPrices } from '../services/apis';
-import { transformPriceDataToPortfolio } from '../utils/mockData';
+import { CryptoPrices, getPortfolioData, transformPortfolioData } from '../services/apis';
+import { Asset } from '../utils/mockData';
 
-// Then in your Wallet component:
 interface WalletProps {
   priceData: CryptoPrices | null;
   isLoading: boolean;
 }
+function Wallet({}: WalletProps) {
+  const [portfolioData, setPortfolioData] = useState<any>(null);
 
-function Wallet({ priceData, isLoading }: WalletProps) {
-  const livePortfolioData = transformPriceDataToPortfolio(priceData);
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        const data = await getPortfolioData('YOUR_ADDRESS');
+        const transformedData = transformPortfolioData(data as any);
+        setPortfolioData(transformedData);
+      } catch (error) {
+        console.error('Error fetching portfolio:', error);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
   return (
-    <ScrollView
-      style={screenStyles.scrollView}
-      contentContainerStyle={screenStyles.scrollViewContent}
-    >
+    <ScrollView style={screenStyles.scrollView} contentContainerStyle={screenStyles.scrollViewContent}>
       <View style={screenStyles.wallet}>
         <View style={screenStyles.walletNameContainer}>
-          <Text style={screenStyles.walletNameText}>Wallet Name</Text>
+          <Text style={screenStyles.walletNameText}>ETH Balance: {portfolioData?.[0]?.balance ?? '0.00'} ETH</Text>
         </View>
-        {isLoading ? (
-          <ActivityIndicator size="large" color="#3498db" />
-        ) : (
-          livePortfolioData.map((asset, index) => {
-            // Get the current price data for this asset
-            const currentPrice =
-              asset.symbol.toLowerCase() === 'eth'
-                ? priceData?.ethereum
-                : asset.symbol.toLowerCase() === 'btc'
-                  ? priceData?.bitcoin
-                  : priceData?.['usd-coin'];
-
-            return (
-              <AssetCard
-                key={asset.id}
-                asset={{
-                  ...asset,
-                  // Update value and change with live data if available
-                  value: currentPrice?.usd || asset.value,
-                  change24h: currentPrice?.usd_24h_change || asset.change24h,
-                }}
-                style={
-                  livePortfolioData.length % 2 !== 0 && index === livePortfolioData.length - 1
-                    ? { marginLeft: 16 }
-                    : undefined
-                }
-              />
-            );
-          })
-        )}
+        {portfolioData?.map((asset: Asset, index: number) => (
+          <AssetCard
+            key={asset.id}
+            asset={asset}
+            style={portfolioData.length % 2 !== 0 && index === portfolioData.length - 1 ? { marginLeft: 16 } : undefined}
+          />
+        ))}
       </View>
     </ScrollView>
   );
 }
-
 export default Wallet;

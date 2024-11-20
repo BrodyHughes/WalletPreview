@@ -33,3 +33,22 @@ export interface Theme {
   positive: string;
   negative: string;
 }
+
+export interface WalletData {
+  prices: {
+    bitcoin: {
+      usd: number;
+      usd_24h_change: number;
+    };
+    ethereum: {
+      usd: number;
+      usd_24h_change: number;
+    };
+    'usd-coin': {
+      usd: number;
+      usd_24h_change: number;
+    };
+  };
+  ethBalance: string;
+  status: string;
+}

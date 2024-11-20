@@ -23,7 +23,7 @@ export function transformPriceDataToPortfolio(priceData: CryptoPrices | null) {
       symbol: 'ETH',
       name: 'Ethereum',
       balance: 'mocked', // This would come from wallet data in reality
-      value: priceData.ethereum.usd,
+      value: priceData.ethereum?.usd,
       change24h: priceData.ethereum.usd_24h_change,
       colors: {
         primary: '#627EEA',
@@ -36,7 +36,7 @@ export function transformPriceDataToPortfolio(priceData: CryptoPrices | null) {
       symbol: 'BTC',
       name: 'Bitcoin',
       balance: '0.05',
-      value: priceData.bitcoin.usd,
+      value: priceData.bitcoin?.usd,
       change24h: priceData.bitcoin.usd_24h_change,
       colors: {
         primary: '#F7931A',
@@ -49,7 +49,7 @@ export function transformPriceDataToPortfolio(priceData: CryptoPrices | null) {
       symbol: 'USDC',
       name: 'USD Coin',
       balance: '500',
-      value: priceData['usd-coin'].usd,
+      value: priceData['usd-coin']?.usd,
       change24h: priceData['usd-coin'].usd_24h_change,
       colors: {
         primary: '#2775CA',

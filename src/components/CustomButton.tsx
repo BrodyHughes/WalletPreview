@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  TouchableOpacityProps,
-  ActivityIndicator,
-  ViewStyle,
-  TextStyle,
-} from 'react-native';
+import { TouchableOpacity, Text, TouchableOpacityProps, ActivityIndicator, ViewStyle, TextStyle } from 'react-native';
 import { buttonStyles } from '../styles/components';
 
 interface CustomButtonProps extends TouchableOpacityProps {
@@ -31,13 +24,7 @@ export function CustomButton({
 }: CustomButtonProps) {
   return (
     <TouchableOpacity
-      style={[
-        buttonStyles.button,
-        buttonStyles[variant],
-        buttonStyles[size],
-        disabled && buttonStyles.disabled,
-        buttonStyle,
-      ]}
+      style={[buttonStyles.button, buttonStyles[variant], buttonStyles[size], disabled && buttonStyles.disabled, buttonStyle]}
       disabled={disabled || isLoading}
       {...props}
     >

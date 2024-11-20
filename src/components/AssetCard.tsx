@@ -45,14 +45,11 @@ function AssetCard({ asset, style }: AssetCardProps) {
         {asset.balance} {asset.symbol}
       </Text>
       <Text style={assetCardStyles.value}>
-        <FontAwesome5 name="dollar-sign" size={16} color="#666" /> Value: $
-        {asset.value.toLocaleString()}
+        <FontAwesome5 name="dollar-sign" size={16} color="#666" /> Value: ${asset.value.toLocaleString()}
       </Text>
       <View style={assetCardStyles.changeContainer}>
         {renderChangeIcon()}
-        <Text
-          style={[assetCardStyles.change, { color: asset.change24h >= 0 ? '#2ecc71' : '#e74c3c' }]}
-        >
+        <Text style={[assetCardStyles.change, { color: asset.change24h >= 0 ? '#2ecc71' : '#e74c3c' }]}>
           {' '}
           {asset.change24h > 0 ? '+' : ''}
           {asset.change24h.toFixed(4)}%

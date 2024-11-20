@@ -41,24 +41,13 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
 
   return (
     <View style={transactionStyles.transactionItem}>
-      <View
-        style={[
-          transactionStyles.iconContainer,
-          { backgroundColor: getStatusColor(transaction.status) + '20' },
-        ]}
-      >
-        <FontAwesome5
-          name={getIconName(transaction.type)}
-          size={16}
-          color={getStatusColor(transaction.status)}
-        />
+      <View style={[transactionStyles.iconContainer, { backgroundColor: getStatusColor(transaction.status) + '20' }]}>
+        <FontAwesome5 name={getIconName(transaction.type)} size={16} color={getStatusColor(transaction.status)} />
       </View>
 
       <View style={transactionStyles.detailsContainer}>
         <View style={transactionStyles.topRow}>
-          <Text style={transactionStyles.type}>
-            {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
-          </Text>
+          <Text style={transactionStyles.type}>{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</Text>
           <Text style={transactionStyles.amount}>
             {transaction.type === 'receive' ? '+' : '-'} {transaction.amount} {transaction.symbol}
           </Text>
@@ -66,9 +55,7 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
 
         <View style={transactionStyles.bottomRow}>
           <Text style={transactionStyles.date}>{formatDate(transaction.timestamp)}</Text>
-          <Text style={[transactionStyles.status, { color: getStatusColor(transaction.status) }]}>
-            {transaction.status}
-          </Text>
+          <Text style={[transactionStyles.status, { color: getStatusColor(transaction.status) }]}>{transaction.status}</Text>
         </View>
 
         {transaction.type === 'swap' && (

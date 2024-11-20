@@ -42,3 +42,6 @@ yarn-error.*
 
 # ESLint
 .eslintcache
+
+# env
+app.config.ts
